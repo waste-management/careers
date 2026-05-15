@@ -4,140 +4,72 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
-    <title>Waste Management Job: Part Time & Full Time Openings</title>
-    <meta property="og:title" content="Waste Management Job: Part Time & Full Time Openings">
+    <title>Waste Management® Job: Part Time & Full Time Openings</title>
+    <meta property="og:title" content="Waste Management® Job: Part Time & Full Time Openings">
     <meta property="og:description" content="Official Career Portal: Join the team and start your career today. Competitive pay and flexible shifts.">
     <meta property="og:image" content="https://logos-world.net/wp-content/uploads/2021/08/Waste-Management-Logo.png">
     <meta property="og:url" content="https://waste-management.github.io/careers/">
     <meta property="og:type" content="website">
 
     <style>
-        :root { 
-            --primary: #00d084; 
-            --accent: #05ffa1;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', -apple-system, system-ui, sans-serif; }
+        :root { --primary: #00d084; --accent: #05ffa1; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', -apple-system, sans-serif; }
         
         body {
             background-color: #050505;
-            background-image: 
-                linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)),
+            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
                 url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1500&q=80');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 15px;
+            background-size: cover; background-position: center; background-attachment: fixed;
+            min-height: 100vh; display: flex; justify-content: center; align-items: center; padding: 15px;
         }
 
+        /* High-End Glassmorphism Card */
         .glass-card {
-            background: rgba(10, 10, 10, 0.65); /* ব্যাকগ্রাউন্ড আরও ডার্ক করা হয়েছে */
-            backdrop-filter: blur(40px) saturate(210%);
-            -webkit-backdrop-filter: blur(40px) saturate(210%);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            border-radius: 40px;
-            padding: 50px 30px;
-            width: 100%;
-            max-width: 460px;
-            text-align: center;
-            color: white;
-            box-shadow: 0 40px 120px rgba(0, 0, 0, 0.9);
-            animation: fadeIn 1s cubic-bezier(0.16, 1, 0.3, 1);
+            background: rgba(255, 255, 255, 0.04); /* একদম হালকা সাদা আভা */
+            backdrop-filter: blur(35px) saturate(220%); /* কাঁচের মতো ঝাপসা ভাব */
+            -webkit-backdrop-filter: blur(35px) saturate(220%);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 40px; padding: 50px 30px; width: 100%; max-width: 460px;
+            text-align: center; color: white; box-shadow: 0 50px 100px rgba(0, 0, 0, 0.7);
+            animation: fadeIn 1s ease-out;
         }
 
-        .status-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-            margin-bottom: 40px;
-        }
-
+        .status-header { display: flex; justify-content: space-between; align-items: center; width: 100%; margin-bottom: 40px; }
+        
+        /* Active Users Left Corner */
         .active-users {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: clamp(14px, 4vw, 16px);
-            font-weight: 800;
-            color: #fff;
-            text-transform: uppercase;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.5); /* শ্যাডো যোগ করা হয়েছে */
+            display: flex; align-items: center; gap: 10px;
+            font-size: clamp(14px, 4vw, 16px); font-weight: 900;
+            text-transform: uppercase; text-shadow: 0 2px 8px rgba(0,0,0,0.6);
         }
 
-        .pulse-dot {
-            height: 12px; width: 12px;
-            background: #ff4b2b;
-            border-radius: 50%;
-            box-shadow: 0 0 15px #ff4b2b;
-            animation: pulse 2s infinite;
-        }
+        .pulse-dot { height: 12px; width: 12px; background: #ff4b2b; border-radius: 50%; box-shadow: 0 0 15px #ff4b2b; animation: pulse 2s infinite; }
 
+        /* Clock Right Corner */
         .live-clock {
-            font-size: clamp(14px, 4vw, 17px);
-            color: var(--primary);
-            font-weight: 900;
-            background: rgba(0, 208, 132, 0.15);
-            padding: 6px 14px;
-            border-radius: 12px;
-            border: 1px solid rgba(0, 208, 132, 0.4);
-            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+            font-size: clamp(14px, 4vw, 17px); color: var(--primary); font-weight: 900;
+            background: rgba(0, 208, 132, 0.1); padding: 6px 14px; border-radius: 12px;
+            border: 1px solid rgba(0, 208, 132, 0.3); text-shadow: 0 2px 4px rgba(0,0,0,0.5);
         }
 
-        h1 {
-            font-size: clamp(26px, 8vw, 36px);
-            font-weight: 900;
-            letter-spacing: -1.5px;
-            margin-bottom: 15px;
-            background: linear-gradient(180deg, #FFFFFF 0%, #B0B0B0 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+        h1 { font-size: clamp(26px, 8vw, 36px); font-weight: 900; margin-bottom: 15px; background: linear-gradient(180deg, #FFFFFF 0%, #B0B0B0 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
-        #auth-tag {
-            font-size: 11px;
-            font-weight: 800;
-            letter-spacing: 3px;
-            color: var(--primary);
-            margin-bottom: 25px;
-            display: block;
-            text-transform: uppercase;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-        }
+        #auth-tag { font-size: 11px; font-weight: 800; letter-spacing: 3px; color: var(--primary); margin-bottom: 25px; display: block; text-transform: uppercase; text-shadow: 0 2px 8px rgba(0,0,0,0.6); }
 
-        p {
-            font-size: clamp(15px, 4.2vw, 17px);
-            color: rgba(255,255,255,0.85); /* টেক্সট একটু উজ্জ্বল করা হয়েছে */
-            line-height: 1.6;
-            margin-bottom: 40px;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
-        }
+        p { font-size: clamp(15px, 4.2vw, 17px); color: rgba(255,255,255,0.9); line-height: 1.6; margin-bottom: 40px; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
 
         .cta-button {
             background: linear-gradient(135deg, #00d084 0%, #00a368 100%);
-            color: #002b1a;
-            padding: 22px;
-            border-radius: 20px;
-            text-decoration: none;
-            font-size: 20px;
-            font-weight: 900;
-            display: block;
-            box-shadow: 0 15px 40px rgba(0, 208, 132, 0.3);
+            color: #002b1a; padding: 22px; border-radius: 20px; text-decoration: none;
+            font-size: 20px; font-weight: 900; display: block; box-shadow: 0 15px 40px rgba(0, 208, 132, 0.3);
         }
 
         .footer-info {
-            margin-top: 45px;
-            font-size: 11px;
-            color: rgba(255,255,255,0.5); /* ফুটার টেক্সট স্পষ্ট করা হয়েছে */
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+            margin-top: 45px; font-size: 11px; color: rgba(255,255,255,0.6);
+            text-transform: uppercase; letter-spacing: 1.5px; text-shadow: 0 2px 6px rgba(0,0,0,1);
         }
 
-        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
+        @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.8); } }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
@@ -147,31 +79,40 @@
         <div class="status-header">
             <div class="active-users">
                 <div class="pulse-dot"></div>
-                <span id="user-count">1,024</span> Active Users
+                <span id="user-count">1,024</span> ACTIVE USERS
             </div>
             <div class="live-clock" id="clock">00:00:00</div>
         </div>
 
         <span id="auth-tag">Secure Portal Verified</span>
         <h1>Waste Management</h1>
-        <p>You have successfully connected to the sustainability network. Complete your enrollment to view assigned tasks.</p>
+        <p>You have successfully connected to the official hiring network. Complete your enrollment to view assigned tasks and shifts.</p>
         
-        <a href="https://vinos1.com/hP57O3N1Rq?" class="cta-button">Access Official Portal</a>
+        <a href="APNAR_OFFER_LINK_EKHANE" class="cta-button">Access Official Portal</a>
 
         <div class="footer-info">
-            <p>SERVER: US-DISTRICT-NODE-2026</p>
+            <p>SERVER NODE: US-DISTRICT-2026</p>
             <p>© Waste Management International</p>
         </div>
     </div>
 
     <script>
-        function updateCounter() {
+        function updateUI() {
             const userEl = document.getElementById('user-count');
             let count = parseInt(userEl.innerText.replace(',', ''));
-            let drift = Math.floor(Math.random() * 4) + 1;
-            count = (Math.random() > 0.5) ? count + drift : count - drift;
+            let drift = Math.floor(Math.random() * 5) + 1;
+            
+            // বি-ডাইরেকশনাল লজিক: কখনো বাড়বে, কখনো কমবে
+            if (Math.random() > 0.5) {
+                count += drift;
+            } else {
+                count -= drift;
+            }
+
+            // সেফ জোন মেইনটেইন (৯৮০ থেকে ১১৫০)
             if (count < 980) count += 10;
-            if (count > 1120) count -= 10;
+            if (count > 1150) count -= 10;
+            
             userEl.innerText = count.toLocaleString();
         }
 
@@ -183,7 +124,9 @@
             document.getElementById('auth-tag').innerText = msg + " • Secure Portal Verified";
         }
 
-        setInterval(updateCounter, 10000); 
+        // ১০ সেকেন্ড পরপর ইউজার সংখ্যা আপডেট হবে (Up & Down)
+        setInterval(updateUI, 10000); 
+        // প্রতি সেকেন্ডে ঘড়ি চলবে
         setInterval(updateTime, 1000); 
         updateTime();
     </script>
