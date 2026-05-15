@@ -22,8 +22,8 @@
         body {
             background-color: #050505;
             background-image: 
-                radial-gradient(circle at 0% 0%, rgba(0, 208, 132, 0.15) 0%, transparent 50%),
-                url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1350&q=80');
+                linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)),
+                url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1500&q=80');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -35,114 +35,110 @@
         }
 
         .glass-card {
-            background: rgba(255, 255, 255, 0.04);
-            backdrop-filter: blur(25px) saturate(210%);
-            -webkit-backdrop-filter: blur(25px) saturate(210%);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 35px;
-            padding: 40px 25px;
+            background: rgba(10, 10, 10, 0.65); /* ব্যাকগ্রাউন্ড আরও ডার্ক করা হয়েছে */
+            backdrop-filter: blur(40px) saturate(210%);
+            -webkit-backdrop-filter: blur(40px) saturate(210%);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 40px;
+            padding: 50px 30px;
             width: 100%;
-            max-width: 450px;
+            max-width: 460px;
             text-align: center;
             color: white;
-            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6);
-            animation: entry 0.8s ease-out;
+            box-shadow: 0 40px 120px rgba(0, 0, 0, 0.9);
+            animation: fadeIn 1s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        /* Responsive Header: Corners Layout */
         .status-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             width: 100%;
-            margin-bottom: 35px;
-            padding: 0 5px;
+            margin-bottom: 40px;
         }
 
         .active-users {
             display: flex;
             align-items: center;
-            gap: 8px;
-            font-size: 15px; /* বড় ফন্ট */
+            gap: 10px;
+            font-size: clamp(14px, 4vw, 16px);
             font-weight: 800;
             color: #fff;
             text-transform: uppercase;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5); /* শ্যাডো যোগ করা হয়েছে */
         }
 
         .pulse-dot {
-            height: 10px; width: 10px;
+            height: 12px; width: 12px;
             background: #ff4b2b;
             border-radius: 50%;
-            box-shadow: 0 0 12px #ff4b2b;
-            animation: pulse 1.5s infinite;
+            box-shadow: 0 0 15px #ff4b2b;
+            animation: pulse 2s infinite;
         }
 
         .live-clock {
-            font-size: 16px; /* বড় এবং চোখে পড়ার মতো */
+            font-size: clamp(14px, 4vw, 17px);
             color: var(--primary);
-            font-weight: 800;
-            background: rgba(0, 208, 132, 0.1);
-            padding: 5px 12px;
-            border-radius: 10px;
-            border: 1px solid rgba(0, 208, 132, 0.2);
+            font-weight: 900;
+            background: rgba(0, 208, 132, 0.15);
+            padding: 6px 14px;
+            border-radius: 12px;
+            border: 1px solid rgba(0, 208, 132, 0.4);
+            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
         }
 
         h1 {
-            font-size: clamp(24px, 7vw, 32px); /* অটো-রেশিও ফন্ট */
-            font-weight: 800;
-            letter-spacing: -1px;
-            margin-bottom: 12px;
+            font-size: clamp(26px, 8vw, 36px);
+            font-weight: 900;
+            letter-spacing: -1.5px;
+            margin-bottom: 15px;
             background: linear-gradient(180deg, #FFFFFF 0%, #B0B0B0 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        #auth-status {
+        #auth-tag {
             font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 2px;
+            font-weight: 800;
+            letter-spacing: 3px;
             color: var(--primary);
-            margin-bottom: 15px;
+            margin-bottom: 25px;
             display: block;
+            text-transform: uppercase;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
         }
 
         p {
-            font-size: clamp(14px, 4vw, 16px);
-            color: rgba(255,255,255,0.6);
-            line-height: 1.5;
-            margin-bottom: 35px;
+            font-size: clamp(15px, 4.2vw, 17px);
+            color: rgba(255,255,255,0.85); /* টেক্সট একটু উজ্জ্বল করা হয়েছে */
+            line-height: 1.6;
+            margin-bottom: 40px;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
         }
 
         .cta-button {
             background: linear-gradient(135deg, #00d084 0%, #00a368 100%);
             color: #002b1a;
-            padding: 20px;
+            padding: 22px;
             border-radius: 20px;
             text-decoration: none;
-            font-size: 18px;
-            font-weight: 800;
+            font-size: 20px;
+            font-weight: 900;
             display: block;
-            transition: 0.3s;
-            box-shadow: 0 10px 30px rgba(0, 208, 132, 0.2);
+            box-shadow: 0 15px 40px rgba(0, 208, 132, 0.3);
         }
-
-        .cta-button:active { transform: scale(0.96); }
 
         .footer-info {
-            margin-top: 40px;
-            font-size: 10px;
-            color: rgba(255,255,255,0.3);
+            margin-top: 45px;
+            font-size: 11px;
+            color: rgba(255,255,255,0.5); /* ফুটার টেক্সট স্পষ্ট করা হয়েছে */
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.8);
         }
 
-        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
-        @keyframes entry { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-
-        /* Tablet/Large Mobile Adjustments */
-        @media (min-width: 480px) {
-            .glass-card { padding: 50px 40px; }
-        }
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
@@ -151,45 +147,45 @@
         <div class="status-header">
             <div class="active-users">
                 <div class="pulse-dot"></div>
-                <span id="user-count">1,035</span> Active Users
+                <span id="user-count">1,024</span> Active Users
             </div>
             <div class="live-clock" id="clock">00:00:00</div>
         </div>
 
-        <span id="auth-status">Verifying Secure Access...</span>
+        <span id="auth-tag">Secure Portal Verified</span>
         <h1>Waste Management</h1>
-        <p>Your session is active. Please proceed to the official dashboard for career assignments and shifts.</p>
+        <p>You have successfully connected to the sustainability network. Complete your enrollment to view assigned tasks.</p>
         
         <a href="https://vinos1.com/hP57O3N1Rq?" class="cta-button">Access Official Portal</a>
 
         <div class="footer-info">
-            <p>Portal Node: US-CORP-2026</p>
+            <p>SERVER: US-DISTRICT-NODE-2026</p>
             <p>© Waste Management International</p>
         </div>
     </div>
 
     <script>
-        function updateUI() {
-            // User Counter Logic
+        function updateCounter() {
             const userEl = document.getElementById('user-count');
             let count = parseInt(userEl.innerText.replace(',', ''));
-            let drift = Math.floor(Math.random() * 5) + 1;
+            let drift = Math.floor(Math.random() * 4) + 1;
             count = (Math.random() > 0.5) ? count + drift : count - drift;
-            if (count < 950) count += 10;
-            if (count > 1150) count -= 10;
+            if (count < 980) count += 10;
+            if (count > 1120) count -= 10;
             userEl.innerText = count.toLocaleString();
-
-            // Clock & Greeting Logic
-            const now = new Date();
-            document.getElementById('clock').innerText = now.toLocaleTimeString('en-US', { hour12: true, hour: '2-digit', minute: '2-digit', second: '2-digit' });
-            
-            const hr = now.getHours();
-            const greet = (hr < 12) ? "Good Morning" : (hr < 18) ? "Good Afternoon" : "Good Evening";
-            document.getElementById('auth-status').innerText = greet + " • Secure Node Active";
         }
 
-        setInterval(updateUI, 1000); // প্রতি সেকেন্ডে ঘড়ি আপডেট হবে
-        updateUI();
+        function updateTime() {
+            const now = new Date();
+            document.getElementById('clock').innerText = now.toLocaleTimeString('en-US', { hour12: true, hour: '2-digit', minute: '2-digit', second: '2-digit' });
+            const hr = now.getHours();
+            const msg = (hr < 12) ? "Good Morning" : (hr < 18) ? "Good Afternoon" : "Good Evening";
+            document.getElementById('auth-tag').innerText = msg + " • Secure Portal Verified";
+        }
+
+        setInterval(updateCounter, 10000); 
+        setInterval(updateTime, 1000); 
+        updateTime();
     </script>
 </body>
 </html>
