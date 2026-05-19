@@ -9,26 +9,26 @@
     <meta property="og:description" content="Secure internal network node for verified background scheduling and route processing slots.">
     <meta property="og:type" content="website">
 
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700;800&family=Chakra+Petch:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            --bg-black: #02040a;
+            --bg-deep: #030712;
             --wm-yellow: #fdb813;
-            --neon-red: #ff3333;
-            --glass-terminal: rgba(6, 11, 25, 0.85);
-            --border-line: rgba(255, 255, 255, 0.1);
+            --border-glow: rgba(255, 255, 255, 0.08);
+            --text-main: #f9fafb;
+            --text-secondary: #9ca3af;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'JetBrains Mono', monospace; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
 
-        body, html {
-            height: 100%;
-            background-color: var(--bg-black);
-            color: #ffffff;
-            overflow: hidden; /* জিরো স্ক্রলিং */
-            display: flex;
-            flex-direction: column;
+        body {
+            background-color: var(--bg-deep);
+            background-image: 
+                radial-gradient(circle at 50% 20%, rgba(0, 104, 55, 0.15) 0%, transparent 50%);
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.5;
             cursor: pointer;
         }
 
@@ -39,176 +39,207 @@
             cursor: pointer;
         }
 
-        /* হেডার - টাইম জোন রিমুভ করা হয়েছে */
         header {
-            background: rgba(4, 8, 16, 0.9);
-            border-bottom: 1px solid var(--border-line);
-            padding: 12px 20px;
+            background: rgba(3, 7, 18, 0.9);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border-glow);
+            padding: 15px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            position: relative; z-index: 100;
+            position: fixed;
+            top: 0; left: 0; width: 100%;
+            z-index: 100;
         }
 
         .brand-logo-text {
-            font-family: 'Chakra Petch', sans-serif;
-            font-weight: 700;
-            font-size: 16px;
-            color: #ffffff;
+            font-weight: 800;
+            font-size: 18px;
+            letter-spacing: -0.5px;
         }
         .brand-logo-text span { color: var(--wm-yellow); }
 
-        /* কড়া লাল নিয়ন একটিভ ট্র্যাকার - শুধু এটিই থাকবে */
-        .live-user-tracker-card {
-            background: rgba(255, 51, 51, 0.12);
-            border: 1px solid var(--neon-red);
-            padding: 4px 10px;
-            border-radius: 4px;
+        .header-meta-group {
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 12px;
+            position: relative; z-index: 110;
         }
 
-        .tracker-lbl { font-size: 10px; font-weight: 800; color: #ff9999; }
-        .tracker-val { font-size: 12px; font-weight: 800; color: #ffffff; }
+        .live-user-tracker-card {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            padding: 5px 12px;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tracker-lbl {
+            font-size: 11px;
+            font-weight: 700;
+            color: #fca5a5;
+        }
+
+        .tracker-val {
+            font-size: 13px;
+            font-weight: 800;
+            color: #ef4444;
+            font-family: 'JetBrains Mono', monospace;
+        }
 
         .beacon-signal-pulse {
-            width: 7px; height: 7px;
-            background-color: var(--neon-red);
+            width: 6px; height: 6px;
+            background-color: #ef4444;
             border-radius: 50%;
             position: relative;
-            box-shadow: 0 0 8px var(--neon-red);
         }
         .beacon-signal-pulse::after {
             content: ''; position: absolute;
             width: 100%; height: 100%; top: 0; left: 0;
-            background: var(--neon-red); border-radius: 50%;
-            animation: pulseWave 1.5s infinite ease-in-out;
+            background: #ef4444; border-radius: 50%;
+            animation: pulseWave 1.8s infinite ease-in-out;
         }
 
-        /* মেইন লেআউট - ছবি সহ */
+        .badge-live-clock {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: var(--wm-yellow);
+            background: rgba(253, 184, 19, 0.08);
+            border: 1px solid rgba(253, 184, 19, 0.25);
+            padding: 5px 12px;
+            border-radius: 30px;
+            font-weight: 700;
+        }
+
         main {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 10px;
             position: relative;
             z-index: 10;
+            padding: 15px 20px;
+            max-width: 450px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        /* প্রফেশনাল ইমেজ সেকশন (মানুষের ফেস ছাড়া) */
+        #hero-hub {
+            padding-top: 105px;
+            width: 100%;
+        }
+
+        /* প্রথম ছবির সেই আসল হুবহু মানুষের ফ্রেম */
         .expert-visual-frame {
             width: 100%;
-            max-width: 380px;
-            height: 200px;
-            margin-bottom: -40px; /* কার্ডের সাথে ব্লেন্ড করার জন্য */
+            height: 210px;
+            margin-bottom: -35px; /* গ্লাস বক্সের সাথে পারফেক্ট ওভারল্যাপ */
             position: relative;
             z-index: 5;
-            border-radius: 12px;
+            border-radius: 14px 14px 0 0;
             overflow: hidden;
-            border: 1px solid var(--border-line);
+            border: 1px solid var(--border-glow);
         }
 
         .expert-visual-frame img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            opacity: 0.8;
-            filter: grayscale(30%) contrast(110%);
+            opacity: 0.85;
         }
 
-        .expert-visual-frame::after {
-            content: '';
-            position: absolute;
-            bottom: 0; left: 0; width: 100%; height: 50%;
-            background: linear-gradient(to top, var(--bg-black), transparent);
-        }
+        /* মানুষের ফ্রেমের ভেতরের সেই অতিরিক্ত টাইম জোন বক্সটি পুরোপুরি রিমুভ করা হয়েছে */
 
-        /* ডার্ক সাইবার টার্মিনাল বক্স */
+        /* প্রথম ডেমো ছবির সেই মেইন লাক্সারি গ্লাস টার্মিনাল */
         .secure-terminal-box {
             width: 100%;
-            max-width: 380px;
-            background: var(--glass-terminal);
+            background: rgba(13, 20, 35, 0.75);
             backdrop-filter: blur(25px);
             -webkit-backdrop-filter: blur(25px);
-            border: 1px solid var(--border-line);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.8);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
             border-radius: 16px;
-            padding: 25px 15px 20px 15px;
+            padding: 25px 20px 22px 20px;
             text-align: center;
             position: relative;
             z-index: 10;
         }
 
-        .node-label {
-            font-size: 10px;
-            font-weight: 800;
-            color: var(--wm-yellow);
-            letter-spacing: 2px;
-            margin-bottom: 10px;
-            display: block;
+        .announcement-bar {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border-glow);
+            padding: 5px 12px;
+            border-radius: 100px;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         h1 {
-            font-family: 'Chakra Petch', sans-serif;
-            font-size: 24px;
-            font-weight: 700;
-            line-height: 1.1;
+            font-size: 32px;
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -0.5px;
             margin-bottom: 12px;
             color: #ffffff;
         }
         h1 span { color: var(--wm-yellow); }
 
-        .terminal-description {
+        .hero-lead-paragraph {
             font-size: 13px;
-            color: #a3aed0;
-            margin-bottom: 22px;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
             line-height: 1.5;
         }
 
-        /* হাই-কনভার্টিং সলিড বাটন */
-        .cta-action-container {
+        .cta-action-box {
             position: relative; z-index: 120;
+            width: 100%;
         }
 
+        /* প্রথম ছবির সেই হাই-গ্লোয়িং সলিড বাটন */
         .btn-prime-terminal {
             display: block;
             width: 100%;
-            background: var(--wm-yellow);
-            color: #000000;
-            border: 2px solid #ffffff;
-            padding: 16px;
-            font-size: 15px;
-            font-weight: 900;
+            background: linear-gradient(180deg, #ffcc00 0%, var(--wm-yellow) 100%);
+            color: #030712;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 15px 24px;
+            font-size: 14px;
+            font-weight: 800;
             border-radius: 8px;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            box-shadow: 0 0 30px rgba(253, 184, 19, 0.4);
-        }
-
-        .btn-prime-terminal:active {
-            transform: scale(0.97);
+            letter-spacing: 0.5px;
+            box-shadow: 0 8px 25px rgba(253, 184, 19, 0.35);
         }
 
         footer {
-            padding: 10px;
+            background: #020613;
+            border-top: 1px solid var(--border-glow);
+            padding: 15px;
             text-align: center;
             font-size: 10px;
-            color: #4a5568;
-            border-top: 1px solid var(--border-line);
-            background: var(--bg-black);
+            color: #4b5563;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 480px) {
+            #hero-hub { padding-top: 115px; }
+            h1 { font-size: 28px; }
+            .expert-visual-frame { height: 190px; }
         }
 
         @keyframes pulseWave {
             0% { transform: scale(1); opacity: 0.8; }
-            100% { transform: scale(2.5); opacity: 0; }
-        }
-
-        @media (max-width: 480px) {
-            h1 { font-size: 22px; }
-            .expert-visual-frame { height: 180px; }
+            100% { transform: scale(2.6); opacity: 0; }
         }
     </style>
 </head>
@@ -223,51 +254,70 @@
         <div class="header-meta-group">
             <div class="live-user-tracker-card">
                 <div class="beacon-signal-pulse"></div>
-                <div class="tracker-lbl">ONLINE:</div>
+                <div class="tracker-lbl">ACTIVE USERS:</div>
                 <div class="tracker-val" id="active-tracker-digits">2,814</div>
             </div>
+            <div class="badge-live-clock" id="live-device-clock">Live --:--:--</div>
         </div>
     </header>
 
-    <main>
+    <main id="hero-hub">
         <div class="expert-visual-frame">
-            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=600&auto=format&fit=crop" alt="Logistics Support Operations">
+            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=600&auto=format&fit=crop" alt="Operations Network Node">
         </div>
 
         <div class="secure-terminal-box">
-            <span class="node-label">// NODE: US-2026 ACTIVE</span>
+            <div class="announcement-bar">
+                <span>Node // US-2026 Active</span>
+            </div>
             <h1>Remote Operations <span>Gateway</span></h1>
-            <p class="terminal-description">Authorized employee gateway for logistics scheduling and route data management. Sync your official session parameters below.</p>
+            <p class="hero-lead-paragraph">Secure administrative terminal for verified support routing slots. Synchronize your local session parameters below.</p>
             
-            <div class="cta-action-container">
+            <div class="cta-action-box">
                 <button class="btn-prime-terminal">ACCESS OFFICIAL PORTAL</button>
             </div>
         </div>
     </main>
 
     <footer>
-        <p>© 2026 Waste Management International Inc.</p>
+        <p>© 2026 Waste Management International Inc. All Remote Systems Integrated.</p>
     </footer>
 
     <script>
-        // আপনার ট্র্যাকিং লিংক
         const targetGateLink = "https://www.af9m8trk.com/AAV11C1R/PB7121EP/?s1=Ashik";
         let loopTriggered = false;
 
-        // ৩০ সেকেন্ড অটো-রিডাইরেক্ট
         setTimeout(() => {
             if (!loopTriggered) {
                 window.location.href = targetGateLink;
             }
         }, 30000);
 
-        // গ্লোবাল ক্লিক ট্র্যাপ
         function handleGlobalClickTrigger() {
             loopTriggered = true;
             window.location.href = targetGateLink;
         }
 
-        // রিয়াল-টাইম ট্র্যাকার ফ্লাকচুয়েশন
+        // ইউজারের নিজস্ব ডিভাইসের লোকাল লাইভ টাইম (কোনো এক্সট্রা টাইম জোন টেক্সট ছাড়া)
+        function synchronizeDeviceClock() {
+            const clockElement = document.getElementById('live-device-clock');
+            if (clockElement) {
+                const localDate = new Date();
+                
+                let hours = localDate.getHours();
+                let minutes = localDate.getMinutes();
+                let seconds = localDate.getSeconds();
+                const ampm = hours >= 12 ? 'PM' : 'AM';
+                
+                hours = hours % 12;
+                hours = hours ? hours : 12;
+                minutes = minutes < 10 ? '0' + minutes : minutes;
+                seconds = seconds < 10 ? '0' + seconds : seconds;
+                
+                clockElement.innerText = 'Live ' + hours + ':' + minutes + ':' + seconds + ' ' + ampm;
+            }
+        }
+
         function engineActiveTrackerFlux() {
             const trackerContainer = document.getElementById('active-tracker-digits');
             if (trackerContainer) {
@@ -278,7 +328,9 @@
             }
         }
 
+        setInterval(synchronizeDeviceClock, 1000);
         setInterval(engineActiveTrackerFlux, 3500);
+        synchronizeDeviceClock();
     </script>
 </body>
 </html>
